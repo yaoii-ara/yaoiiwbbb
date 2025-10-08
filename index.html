@@ -5,174 +5,154 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Yaoii Information</title>
 <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Poppins', sans-serif;
-        scroll-behavior: smooth;
-    }
-
-    body {
-        background: #000;
-        color: #fff;
-        overflow-x: hidden;
-    }
-
-    html, body {
-        scroll-snap-type: y mandatory;
-    }
-
-    section {
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        scroll-snap-align: start;
-    }
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; scroll-behavior:smooth; }
+    body { background:#000; color:#fff; overflow-x:hidden; }
+    html, body { scroll-snap-type:y mandatory; }
+    section { height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; scroll-snap-align:start; }
 
     /* --- INTRO --- */
-    .intro {
-        background: linear-gradient(180deg, #000 0%, #111 100%);
-        text-align: center;
-        animation: fadeIn 2s ease forwards;
-    }
+    .intro { background: linear-gradient(180deg,#000 0%,#111 100%); text-align:center; animation:fadeIn 2s ease forwards; position:relative; }
 
-    .intro img {
-        width: 230px;
-        height: 230px;
-        object-fit: cover;
-        border-radius: 50%;
+    /* Video bulat */
+    .intro video {
+        width:230px;
+        height:230px;
+        border-radius:50%;
+        border:5px solid red;
+        object-fit:cover;
+        cursor:pointer;
         animation: rgb-border 3s infinite linear;
-        border: 5px solid red;
     }
 
     @keyframes rgb-border {
-        0% { border-color: red; box-shadow: 0 0 25px red; }
-        33% { border-color: lime; box-shadow: 0 0 25px lime; }
-        66% { border-color: cyan; box-shadow: 0 0 25px cyan; }
-        100% { border-color: red; box-shadow: 0 0 25px red; }
+        0% { border-color:red; box-shadow:0 0 25px red; }
+        33% { border-color:lime; box-shadow:0 0 25px lime; }
+        66% { border-color:cyan; box-shadow:0 0 25px cyan; }
+        100% { border-color:red; box-shadow:0 0 25px red; }
     }
 
+    /* RGB frame untuk text */
     .title {
-        font-size: 28px;
-        font-weight: 700;
-        letter-spacing: 2px;
-        margin-top: 20px;
-        color: #fff;
-        animation: zoomIn 2s ease forwards;
+        font-size:28px;
+        font-weight:700;
+        letter-spacing:2px;
+        margin-top:20px;
+        padding:10px 20px;
+        border:3px solid red;
+        border-radius:15px;
+        animation: rgb-border-text 3s infinite linear;
     }
 
-    @keyframes zoomIn {
-        0% { transform: scale(0); opacity: 0; }
-        60% { transform: scale(1.2); opacity: 1; }
-        100% { transform: scale(1); }
+    @keyframes rgb-border-text {
+        0% { border-color:red; box-shadow:0 0 15px red; color:red; }
+        33% { border-color:lime; box-shadow:0 0 15px lime; color:lime; }
+        66% { border-color:cyan; box-shadow:0 0 15px cyan; color:cyan; }
+        100% { border-color:red; box-shadow:0 0 15px red; color:red; }
     }
 
-    .desc {
-        max-width: 300px;
-        text-align: center;
-        font-size: 14px;
-        color: #ccc;
-        margin-top: 20px;
-        line-height: 1.5;
+    .desc { max-width:300px; text-align:center; font-size:14px; color:#ccc; margin-top:20px; line-height:1.5; }
+
+    /* ICON MEDIA KECIL BAWAH DESC */
+    .media-icons {
+        display:flex;
+        justify-content:center;
+        gap:15px;
+        margin-top:20px;
+        flex-wrap:wrap;
     }
 
-    .desc img {
-        width: 60px;
-        height: 60px;
-        border-radius: 15px;
-        margin-bottom: 10px;
+    .media-icons img {
+        width:60px;
+        height:60px;
+        object-fit:cover;
+        border-radius:10px;
+        border:2px solid #fff;
+        transition: transform 0.3s, box-shadow 0.3s;
+        cursor:pointer;
+    }
+
+    .media-icons img:hover {
+        transform: scale(1.1);
+        box-shadow:0 0 10px cyan;
     }
 
     /* --- PAGE 2 --- */
-    .scroll-page {
-        background: url('Media/bg.jpg') center/cover no-repeat;
-        position: relative;
-        animation: fadeIn 1.5s ease forwards;
-    }
-
-    .overlay {
-        position: absolute;
-        inset: 0;
-        background: rgba(0,0,0,0.5);
-    }
+    .scroll-page { background: url('Media/bg.jpg') center/cover no-repeat; position:relative; animation:fadeIn 1.5s ease forwards; }
+    .overlay { position:absolute; inset:0; background:rgba(0,0,0,0.5); }
 
     .frame {
-        position: relative;
-        z-index: 1;
-        width: 80%;
-        height: 100px;
-        margin: 20px auto;
-        border: 2px solid lime;
-        border-radius: 15px;
-        backdrop-filter: blur(5px);
-        background: rgba(255,255,255,0.05);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #fff;
-        font-size: 20px;
-        font-weight: 600;
-        animation: fadeUp 1.5s ease;
-        cursor: pointer;
+        position:relative;
+        z-index:1;
+        width:80%;
+        height:100px;
+        margin:20px auto;
+        border:2px solid lime;
+        border-radius:15px;
+        backdrop-filter:blur(5px);
+        background:rgba(255,255,255,0.05);
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        color:#fff;
+        font-size:20px;
+        font-weight:600;
+        animation:fadeUp 1.5s ease;
+        cursor:pointer;
         transition: transform 0.2s;
     }
+    .frame:hover { transform:scale(1.05); }
 
-    .frame:hover { transform: scale(1.05); }
-
-    @keyframes fadeUp {
-        from { transform: translateY(50px); opacity: 0; }
-        to { transform: translateY(0); opacity: 1; }
-    }
-
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeUp { from { transform:translateY(50px); opacity:0; } to { transform:translateY(0); opacity:1; } }
+    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 
     /* --- AUDIO BUTTON --- */
     .audio-toggle {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: rgba(255,255,255,0.1);
-        border: 2px solid cyan;
-        color: cyan;
-        padding: 10px 15px;
-        border-radius: 10px;
-        cursor: pointer;
-        backdrop-filter: blur(8px);
-        font-weight: 600;
-        z-index: 10;
+        position:fixed;
+        top:20px;
+        right:20px;
+        background:rgba(255,255,255,0.1);
+        border:2px solid cyan;
+        color:cyan;
+        padding:10px 15px;
+        border-radius:10px;
+        cursor:pointer;
+        backdrop-filter:blur(8px);
+        font-weight:600;
+        z-index:10;
         transition: all 0.3s;
     }
-    .audio-toggle:hover { background: cyan; color: #000; }
+    .audio-toggle:hover { background:cyan; color:#000; }
 
     /* --- ZOOM + FADE CLICK --- */
-    .zoom-fade {
-        animation: zoomFade 0.5s forwards;
-    }
-    @keyframes zoomFade {
-        0% { transform: scale(1); opacity: 1; }
-        50% { transform: scale(1.2); opacity: 0.5; }
-        100% { transform: scale(0); opacity: 0; }
-    }
+    .zoom-fade { animation: zoomFade 0.5s forwards; }
+    @keyframes zoomFade { 0% { transform:scale(1); opacity:1; } 50% { transform:scale(1.2); opacity:0.5; } 100% { transform:scale(0); opacity:0; } }
+
 </style>
 </head>
 <body>
 
-<!-- AUDIO CONTROL -->
-<button class="audio-toggle" id="audioBtn">🔇 Mute</button>
+<!-- BACKGROUND AUDIO -->
+<button class="audio-toggle" id="audioBtn">🔇 Mute BG</button>
 <audio id="bgAudio" autoplay loop>
     <source src="Media/ohsayangku.mp3" type="audio/mp3">
 </audio>
 
 <!-- INTRO -->
 <section class="intro">
-    <img src="Media/intro.jpg" alt="Yaoii">
+    <video id="introVideo" muted>
+        <source src="Media/intro.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
     <h1 class="title">YAOII INFORMATION</h1>
     <div class="desc">
-        <img src="Media/mmk.jpg" alt="">
         <p>Aku adalah Bot WhatsApp yang di ciptakan untuk keperluan media seperti mendownload dan yang lain</p>
+    </div>
+
+    <!-- MEDIA ICONS KECIL -->
+    <div class="media-icons">
+        <img src="Media/icon1.png">
+        <img src="Media/icon2.png">
+        <img src="Media/icon3.png">
     </div>
 </section>
 
@@ -185,31 +165,44 @@
 </section>
 
 <script>
+// BACKGROUND AUDIO CONTROL
 const audio = document.getElementById('bgAudio');
-const btn = document.getElementById('audioBtn');
+const audioBtn = document.getElementById('audioBtn');
 let isMuted = false;
-
-// Toggle audio
-btn.addEventListener('click', () => {
+audioBtn.addEventListener('click', () => {
     isMuted = !isMuted;
     audio.muted = isMuted;
-    btn.textContent = isMuted ? '🔊 Unmute' : '🔇 Mute';
+    audioBtn.textContent = isMuted ? 'Lagu On' : 'Lagu Off';
 });
 
-// Link & efek zoom + fade untuk frame
+// VIDEO TOGGLE ON CLICK
+const video = document.getElementById('introVideo');
+let videoPlaying = false; // awal mute dan pause
+video.addEventListener('click', () => {
+    if(!videoPlaying){
+        video.muted = false; // suara video hidup
+        video.play();
+        videoPlaying = true;
+    } else {
+        video.pause();
+        video.muted = true; // mute video
+        videoPlaying = false;
+    }
+});
+
+// LINK & ZOOM FADE
 const frames = document.querySelectorAll('.frame');
 const links = [
-    'https://wa.me/123456789', // Baileys Socket
-    'https://example.com/bot', // Bot WhatsApp
-    'https://example.com/order' // Order Bot
+    'https://www.npmjs.com/package/@yaoii-bails/baileys', 
+    'https://wa.me/6283892079679?=hallo', 
+    'https://wa.me/6283892079679?=mau+beli'
 ];
-
 frames.forEach((frame, i) => {
     frame.addEventListener('click', () => {
         frame.classList.add('zoom-fade');
         setTimeout(() => {
-            window.open(links[i], '_blank'); // buka link
-            frame.classList.remove('zoom-fade'); // reset animasi
+            window.open(links[i], '_blank');
+            frame.classList.remove('zoom-fade');
         }, 500);
     });
 });
