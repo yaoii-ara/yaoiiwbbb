@@ -50,7 +50,7 @@
         100% { border-color:red; box-shadow:0 0 15px red; color:red; }
     }
 
-    .desc { max-width:300px; text-align:center; font-size:14px; color:#ccc; margin-top:20px; line-height:1.5; }
+    .desc { max-width:350px; text-align:center; font-size:16px; color:#ccc; margin-top:20px; line-height:1.5; }
 
     /* ICON MEDIA KECIL BAWAH DESC */
     .media-icons {
@@ -143,9 +143,9 @@
         <source src="Media/intro.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
-    <h1 class="title">YAOII INFORMATION</h1>
+    <h1 class="title">Terimakasih Telah melihat Website ini</h1>
     <div class="desc">
-        <p>ini Adalah Website information Yaoiii Tentang Baileys Dan Tentang Bot!! Mohon maaf karna web simple malas buat</p>
+        <p>Kami sangat menghargai waktu Anda untuk mengunjungi halaman ini.</p>
     </div>
 
     <!-- MEDIA ICONS KECIL -->
@@ -165,16 +165,14 @@
 </section>
 
 <script>
-// BACKGROUND AUDIO CONTROL
-<script>
-// AUDIO BG
+// AUDIO BG CONTROL
 const audio = document.getElementById('bgAudio');
 const audioBtn = document.getElementById('audioBtn');
-let isMuted = true; // awal mute supaya autoplay aman
+let isMuted = true; 
 audio.muted = true;
-audio.play().catch(()=>{}); // coba play
+audio.play().catch(()=>{});
 
-// Fungsi buat buka mute + play
+// Fungsi buka mute + play
 function playAudio() {
     audio.muted = false;
     audio.play().catch(()=>{});
@@ -182,7 +180,7 @@ function playAudio() {
     isMuted = false;
 }
 
-// Klik tombol audio toggle
+// Klik tombol toggle
 audioBtn.addEventListener('click', () => {
     if(isMuted){
         playAudio();
@@ -193,7 +191,16 @@ audioBtn.addEventListener('click', () => {
     }
 });
 
-// Auto play setelah klik video intro (interaksi user)
+// Klik pertama di body akan auto play audio
+function firstInteraction() {
+    if(isMuted){
+        playAudio();
+    }
+    document.body.removeEventListener('click', firstInteraction);
+}
+document.body.addEventListener('click', firstInteraction, { once:true });
+
+// VIDEO TOGGLE
 const video = document.getElementById('introVideo');
 let videoPlaying = false;
 video.addEventListener('click', () => {
@@ -201,7 +208,6 @@ video.addEventListener('click', () => {
         video.muted = false;
         video.play();
         videoPlaying = true;
-        // pastikan audio bg juga play
         if(isMuted) playAudio();
     } else {
         video.pause();
