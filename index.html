@@ -145,7 +145,7 @@
     </video>
     <h1 class="title">YAOII INFORMATION</h1>
     <div class="desc">
-        <p>ini adalah website information Yaoii tentang bot dan Baileys Saya Hanya Pemula</p>
+        <p>Aku adalah Bot WhatsApp yang di ciptakan untuk keperluan media seperti mendownload dan yang lain</p>
     </div>
 
     <!-- MEDIA ICONS KECIL -->
@@ -166,26 +166,46 @@
 
 <script>
 // BACKGROUND AUDIO CONTROL
+<script>
+// AUDIO BG
 const audio = document.getElementById('bgAudio');
 const audioBtn = document.getElementById('audioBtn');
-let isMuted = false;
+let isMuted = true; // awal mute supaya autoplay aman
+audio.muted = true;
+audio.play().catch(()=>{}); // coba play
+
+// Fungsi buat buka mute + play
+function playAudio() {
+    audio.muted = false;
+    audio.play().catch(()=>{});
+    audioBtn.textContent = 'Lagu Off';
+    isMuted = false;
+}
+
+// Klik tombol audio toggle
 audioBtn.addEventListener('click', () => {
-    isMuted = !isMuted;
-    audio.muted = isMuted;
-    audioBtn.textContent = isMuted ? 'Lagu On' : 'Lagu Off';
+    if(isMuted){
+        playAudio();
+    } else {
+        audio.muted = true;
+        audioBtn.textContent = 'Lagu On';
+        isMuted = true;
+    }
 });
 
-// VIDEO TOGGLE ON CLICK
+// Auto play setelah klik video intro (interaksi user)
 const video = document.getElementById('introVideo');
-let videoPlaying = false; // awal mute dan pause
+let videoPlaying = false;
 video.addEventListener('click', () => {
     if(!videoPlaying){
-        video.muted = false; // suara video hidup
+        video.muted = false;
         video.play();
         videoPlaying = true;
+        // pastikan audio bg juga play
+        if(isMuted) playAudio();
     } else {
         video.pause();
-        video.muted = true; // mute video
+        video.muted = true;
         videoPlaying = false;
     }
 });
